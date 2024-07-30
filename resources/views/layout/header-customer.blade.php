@@ -10,26 +10,26 @@
             <div class="container">
                 <div class="d-flex align-items-center">
                     <div class="topbar-left">
-                        <a href="#" class="text-gray-110 font-size-13 u-header-topbar__nav-link">Welcome to Worldwide
+                        <a href="#" class="text-gray-110 font-size-13 u-header-topbar__nav-link">Welcome to
                             Electronics Store</a>
                     </div>
                     <div class="topbar-right ml-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                 <a href="#" class="u-header-topbar__nav-link"><i class="ec ec-map-pointer mr-1"></i>
-                                    Store Locator</a>
+                                    Địa chỉ</a>
                             </li>
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                <a href="track-your-order.html" class="u-header-topbar__nav-link"><i
-                                        class="ec ec-transport mr-1"></i> Track Your Order</a>
+                                <a href="{{route('customer.view-orders')}}" class="u-header-topbar__nav-link"><i
+                                        class="ec ec-transport mr-1"></i> Đơn hàng của bạn </a>
                             </li>
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                 <a href="{{route('customer.cart')}}" class="u-header-topbar__nav-link"><i
-                                        class="fa fa-shopping-cart"></i> Giỏ Hàng</a>
+                                        class="fa fa-shopping-cart"></i> Giỏ Hàng
+                                </a>
                             </li>
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                <!-- Account Sidebar Toggle Button -->`
-                                    <div class="dropdown">
+                                <!-- Account Sidebar Toggle Button -->
                                         @guest
                                             <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link"
                                                aria-controls="sidebarContent"
@@ -45,6 +45,7 @@
                                                 <i class="ec ec-user mr-1"></i> Register <span class="text-gray-50">or</span> Sign in
                                             </a>
                                         @endguest
+                                <div class="dropdown">
                                         @auth
                                             <button class="btn btn-secondary dropdown-toggle" style="height: 40px; color: white; background-color: #F6dd03 "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                                                 <p class="me-2 text-center">
@@ -53,8 +54,6 @@
                                             </button>
                                         @endauth
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                                            <li><a class="dropdown-item" href="#">Messages</a></li>
                                             <li>
                                                 <form method="post" action="{{route('logout')}}">
                                                     @csrf
@@ -63,8 +62,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                             </i>
-
                                 <!-- End Account Sidebar Toggle Button -->
                             </li>
                         </ul>
@@ -131,25 +128,6 @@
                                 </svg>
                             </a>
                             <!-- End Logo -->
-
-                            <!-- Fullscreen Toggle Button -->
-                            <button id="sidebarHeaderInvokerMenu" type="button"
-                                    class="navbar-toggler d-block btn u-hamburger mr-3 mr-xl-0"
-                                    aria-controls="sidebarHeader"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    data-unfold-event="click"
-                                    data-unfold-hide-on-scroll="false"
-                                    data-unfold-target="#sidebarHeader1"
-                                    data-unfold-type="css-animation"
-                                    data-unfold-animation-in="fadeInLeft"
-                                    data-unfold-animation-out="fadeOutLeft"
-                                    data-unfold-duration="500">
-                                        <span id="hamburgerTriggerMenu" class="u-hamburger__box">
-                                            <span class="u-hamburger__inner"></span>
-                                        </span>
-                            </button>
-                            <!-- End Fullscreen Toggle Button -->
                         </nav>
                         <!-- End Nav -->
                     </div>
@@ -162,24 +140,21 @@
                             <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
                                 <ul class="navbar-nav u-header__navbar-nav">
                                     <!-- Home -->
-                                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
-                                        data-event="hover"
-                                        data-animation-in="slideInUp"
-                                        data-animation-out="fadeOut">
-                                        <a id="HomeMegaMenu"
-                                           class="nav-link u-header__nav-link u-header__nav-link-toggle"
-                                           href="javascript:;" aria-haspopup="true" aria-expanded="false"
-                                           aria-labelledby="HomeSubMenu">Home</a>
+{{--                                    <li class="nav-item hs-has-sub-menu u-header__nav-item"--}}
+{{--                                        data-event="hover"--}}
+{{--                                        data-animation-in="slideInUp"--}}
+{{--                                        data-animation-out="fadeOut">--}}
+{{--                                        <a id="HomeMegaMenu"--}}
+{{--                                           class="nav-link u-header__nav-link u-header__nav-link-toggle"--}}
+{{--                                           href="javascript:;" aria-haspopup="true" aria-expanded="false"--}}
+{{--                                           aria-labelledby="HomeSubMenu">Home</a>--}}
 
-                                        <!-- Home - Submenu -->
-                                        <ul id="HomeSubMenu" class="hs-sub-menu u-header__sub-menu animated fadeOut"
-                                            aria-labelledby="HomeMegaMenu" style="min-width: 230px; display: none;">
-                                            <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                   href="https://transvelo.github.io/electro-html/2.0/html/home/index.html">Home
-                                                    v1</a></li>
-                                        </ul>
-                                        <!-- End Home - Submenu -->
-                                    </li>
+{{--                                        <!-- Home - Submenu -->--}}
+{{--                                        <ul id="HomeSubMenu" class="hs-sub-menu u-header__sub-menu animated fadeOut"--}}
+{{--                                            aria-labelledby="HomeMegaMenu" style="min-width: 230px; display: none;">--}}
+{{--                                        </ul>--}}
+{{--                                        <!-- End Home - Submenu -->--}}
+{{--                                    </li>--}}
                                     <!-- End Home -->
 
                                     <!-- Pages -->
@@ -189,68 +164,112 @@
                                         data-animation-out="fadeOut">
                                         <a id="pagesMegaMenu"
                                            class="nav-link u-header__nav-link u-header__nav-link-toggle"
-                                           href="javascript:;" aria-haspopup="true" aria-expanded="false">Pages</a>
+                                           href="javascript:;" aria-haspopup="true" aria-expanded="false">Thể loại</a>
 
                                         <!-- Home - Mega Menu -->
                                         <div class="hs-mega-menu w-100 u-header__sub-menu"
                                              aria-labelledby="pagesMegaMenu">
                                             <div class="row u-header__mega-menu-wrapper">
-                                                <div class="col-md-3">
-                                                    <span class="u-header__sub-menu-title">Home & Static Pages</span>
+                                                <div class="col-md-2">
+                                                    <span class="u-header__sub-menu-title">Thể Loại</span>
+                                                    @php
+                                                        $allCategoies = \App\Models\Category::all()->pluck('name', 'id');
+                                                    @endphp
                                                     <ul class="u-header__sub-menu-nav-group">
-                                                        <li>
-                                                            <a href="https://transvelo.github.io/electro-html/2.0/html/home/index.html"
-                                                               class="nav-link u-header__sub-menu-nav-link">Home v1</a>
-                                                        </li>
+                                                        @foreach ($allCategoies as $categoryId => $categoryName)
+                                                            <li>
+                                                                <a href="{{ route('customer.view-categories', ['category_id' => $categoryId]) }}"
+                                                                   class="nav-link u-header__sub-menu-nav-link">{{ $categoryName }}</a>
+                                                            </li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
+                                                @php
+                                                    $categories = \App\Models\Category::with('products.brand')->get();
+                                                @endphp
+                                                @foreach ($categories as $category)
+                                                    <div class="col-md-2 d-flex flex-column">
+                                                        <span class="u-header__sub-menu-title">{{ $category->name }}</span>
+                                                        <ul class="u-header__sub-menu-nav-group">
+                                                            @php
+                                                                $brands = $category->products->unique('brand_id')->pluck('brand')->sortBy('name');
+                                                            @endphp
+                                                            @foreach ($brands as $brand)
+                                                                <li>
+                                                                    <a href="{{ route('customer.view-brand-category', ['brand_id' => $brand->id, 'category_id' => $category->id]) }}" class="nav-link u-header__sub-menu-nav-link">
+                                                                        {{ $brand->name }}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                         <!-- End Home - Mega Menu -->
                                     </li>
                                     <!-- End Pages -->
 
-                                    <!-- Blog -->
-                                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                                    <li class="nav-item hs-has-mega-menu u-header__nav-item"
                                         data-event="hover"
                                         data-animation-in="slideInUp"
                                         data-animation-out="fadeOut">
-                                        <a id="blogMegaMenu"
+                                        <a id="pagesMegaMenu"
                                            class="nav-link u-header__nav-link u-header__nav-link-toggle"
-                                           href="javascript:;" aria-haspopup="true" aria-expanded="false"
-                                           aria-labelledby="blogSubMenu">Blog</a>
+                                           href="javascript:;" aria-haspopup="true" aria-expanded="false">Hãng</a>
 
-                                        <!-- Blog - Submenu -->
-                                        <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu"
-                                            aria-labelledby="blogMegaMenu" style="min-width: 230px;">
-                                            <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                   href="https://transvelo.github.io/electro-html/2.0/html/blog/blog-v1.html">Blog
-                                                    v1</a></li>
-                                            </li>
-                                        </ul>
-                                        <!-- End Submenu -->
-                                    </li>
-                                    <!-- End Blog -->
+                                        <!-- Home - Mega Menu -->
+                                        <div class="hs-mega-menu w-100 u-header__sub-menu"
+                                             aria-labelledby="pagesMegaMenu">
+                                            <div class="row u-header__mega-menu-wrapper">
+                                                @php
+                                                    $allBrands = \App\Models\Brand::all()->pluck('name', 'id');
+                                                @endphp
+                                                @foreach ($allBrands as $brandId => $brandName)
+                                                    <div class="col-md-2">
+                                                        <ul class="u-header__sub-menu-nav-group">
+                                                            <li>
+                                                                <a href="{{ route('customer.view-brand', ['brand_id' => $brandId]) }}"
+                                                                   class="nav-link u-header__sub-menu-nav-link">{{ $brandName }}</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
 
-                                    <!-- About us -->
-                                    <li class="nav-item u-header__nav-item">
-                                        <a class="nav-link u-header__nav-link"
-                                           href="https://transvelo.github.io/electro-html/2.0/html/home/about.html">About
-                                            us</a>
+                                        <!-- End Home - Mega Menu -->
                                     </li>
-                                    <!-- End About us -->
+                                    <!-- End Pages -->
 
-                                    <!-- FAQs -->
-                                    <li class="nav-item u-header__nav-item">
-                                        <a class="nav-link u-header__nav-link"
-                                           href="https://transvelo.github.io/electro-html/2.0/html/home/faq.html">FAQs</a>
-                                    </li>
-                                    <!-- End FAQs -->
+                                    <!-- Blog -->
+{{--                                    <li class="nav-item hs-has-sub-menu u-header__nav-item"--}}
+{{--                                        data-event="hover"--}}
+{{--                                        data-animation-in="slideInUp"--}}
+{{--                                        data-animation-out="fadeOut">--}}
+{{--                                        <a id="blogMegaMenu"--}}
+{{--                                           class="nav-link u-header__nav-link u-header__nav-link-toggle"--}}
+{{--                                           href="javascript:;" aria-haspopup="true" aria-expanded="false"--}}
+{{--                                           aria-labelledby="blogSubMenu">Blog</a>--}}
+
+{{--                                        <!-- Blog - Submenu -->--}}
+{{--                                        <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu"--}}
+{{--                                            aria-labelledby="blogMegaMenu" style="min-width: 230px;">--}}
+{{--                                            <li><a class="nav-link u-header__sub-menu-nav-link"--}}
+{{--                                                   href="https://transvelo.github.io/electro-html/2.0/html/blog/blog-v1.html">Blog--}}
+{{--                                                    v1</a></li>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
+{{--                                        <!-- End Submenu -->--}}
+{{--                                    </li>--}}
+{{--                                    <!-- End Blog -->--}}
+
+
 
                                     <!-- Contact Us -->
                                     <li class="nav-item u-header__nav-item">
                                         <a class="nav-link u-header__nav-link"
-                                           href="https://transvelo.github.io/electro-html/2.0/html/home/contact-v1.html">Contact
+                                           href="{{route('customer.contact')}}">Contact
                                             Us</a>
                                     </li>
                                     <!-- End Contact Us -->
@@ -267,7 +286,7 @@
                             <i class="ec ec-support font-size-50 text-primary"></i>
                             <div class="ml-2">
                                 <div class="phone">
-                                    <strong>Support</strong> <a href="tel:800856800604" class="text-gray-90">(+800) 856
+                                    <strong>Support</strong> <a href="tel:800856800604" class="text-gray-90">(+84) 856
                                         800 604</a>
                                 </div>
                                 <div class="email">
@@ -294,44 +313,6 @@
                             <!-- Basics Accordion -->
                             <div id="basicsAccordion">
                                 <!-- Card -->
-                                <div class="card border-0 rounded-0">
-                                    <div class="card-header bg-primary rounded-0 card-collapse border-0"
-                                         id="basicsHeadingOne">
-                                        <button type="button"
-                                                class="btn-link btn-remove-focus btn-block d-flex card-btn py-3 text-lh-1 px-4 shadow-none btn-primary rounded-top-lg border-0 font-weight-bold text-gray-90"
-                                                data-toggle="collapse"
-                                                data-target="#basicsCollapseOne"
-                                                aria-expanded="true"
-                                                aria-controls="basicsCollapseOne">
-                                            <span class="pl-1 text-gray-90">Shop By Department</span>
-                                            <span class="text-gray-90 ml-3">
-                                                        <span class="ec ec-arrow-down-search"></span>
-                                                    </span>
-                                        </button>
-                                    </div>
-                                    <div id="basicsCollapseOne" class="collapse vertical-menu v1"
-                                         aria-labelledby="basicsHeadingOne"
-                                         data-parent="#basicsAccordion">
-                                        <div class="card-body p-0">
-                                            <nav
-                                                class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space hs-menu-initialized">
-                                                <div id="navBar"
-                                                     class="collapse navbar-collapse u-header__navbar-collapse">
-                                                    <ul class="navbar-nav u-header__navbar-nav border-primary border-top-0">
-                                                        <li class="nav-item u-header__nav-item"
-                                                            data-event="hover"
-                                                            data-position="left">
-                                                            <a href="#"
-                                                               class="nav-link u-header__nav-link font-weight-bold">Value
-                                                                of the Day</a>
-                                                        </li>
-                                                        <!-- End Nav Item -->
-                                                    </ul>
-                                                </div>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- End Card -->
                             </div>
                             <!-- End Basics Accordion -->
@@ -341,24 +322,20 @@
                     <!-- Search bar -->
                     <div class="col align-self-center">
                         <!-- Search-Form -->
-                        <form class="js-focus-state">
-                            <label class="sr-only" for="searchProduct">Search</label>
+                        <form class="js-focus-state" action="{{route('customer.search-result')}}" method="GET">
+                            @csrf
+                            <label class="sr-only" for="searchProduct">Tìm kiếm</label>
                             <div class="input-group">
-                                <input type="email"
-                                       class="form-control py-2 pl-5 font-size-15 border-0 height-40 rounded-left-pill"
-                                       name="email" id="searchProduct" placeholder="Search for Products"
-                                       aria-label="Search for Products" aria-describedby="searchProduct1" required>
+                                <input type="text" class="form-control py-2 pl-5 font-size-15 border-0 height-40 rounded-left-pill" name="search_term" id="searchProduct" placeholder="Tìm kiếm sản phẩm " aria-label="Search for Products" aria-describedby="searchProduct1" required>
                                 <div class="input-group-append">
                                     <!-- Select -->
-                                    <select
-                                        class="js-select selectpicker dropdown-select custom-search-categories-select"
-                                        data-style="btn height-40 text-gray-60 font-weight-normal border-0 rounded-0 bg-white px-5 py-2">
-                                        <option value="one" selected>All Categories</option>
-                                        <option value="two">Two</option>
+                                    <select class="js-select selectpicker dropdown-select custom-search-categories-select" name="order_by" data-style="btn height-40 text-gray-60 font-weight-normal border-0 rounded-0 bg-white px-5 py-2">
+                                        <option value="asc"> Thấp đến Cao </option>
+                                        <option value="desc">Cao đến Thấp</option>
                                     </select>
                                     <!-- End Select -->
-                                    <button class="btn btn-dark height-40 py-2 px-3 rounded-right-pill" type="button"
-                                            id="searchProduct1">
+                                    <!-- End Select -->
+                                    <button class="btn btn-dark height-40 py-2 px-3 rounded-right-pill" type="submit" id="searchProduct1">
                                         <span class="ec ec-search font-size-24"></span>
                                     </button>
                                 </div>

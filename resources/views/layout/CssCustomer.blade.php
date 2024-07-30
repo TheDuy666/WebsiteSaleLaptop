@@ -1,11 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Css Customer</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../../favicon.png">
@@ -26,9 +18,63 @@
 
     <!-- CSS Electro Template -->
     <link rel="stylesheet" href="{{asset('/Css_Customer/assets/css/theme.css')}}">
+
 </head>
 <body>
 <style>
+
+    /* Custom checkbox */
+    .custom-checkbox {
+        position: relative;
+    }
+    .custom-checkbox input[type="checkbox"] {
+        opacity: 0;
+        position: absolute;
+        margin: 5px 0 0 3px;
+        z-index: 9;
+    }
+    .custom-checkbox label:before{
+        width: 18px;
+        height: 18px;
+    }
+    .custom-checkbox label:before {
+        content: '';
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: text-top;
+        background: white;
+        border: 1px solid #bbb;
+        border-radius: 2px;
+        box-sizing: border-box;
+        z-index: 2;
+    }
+    .custom-checkbox input[type="checkbox"]:checked + label:after {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 3px;
+        width: 6px;
+        height: 11px;
+        border: solid #000;
+        border-width: 0 3px 3px 0;
+        transform: inherit;
+        z-index: 3;
+        transform: rotateZ(45deg);
+    }
+    .custom-checkbox input[type="checkbox"]:checked + label:before {
+        border-color: #03A9F4;
+        background: #03A9F4;
+    }
+    .custom-checkbox input[type="checkbox"]:checked + label:after {
+        border-color: #fff;
+    }
+    .custom-checkbox input[type="checkbox"]:disabled + label:before {
+        color: #b8b8b8;
+        cursor: auto;
+        box-shadow: none;
+        background: #ddd;
+    }
+
     .dropdown {
         position: relative;
         display: inline-block;
@@ -50,6 +96,11 @@
     .dropdown:hover .dropdown-menu {
         display: block;
     }
+
+    .product-checkbox:checked + td {
+        background-color: #f2f2f2;
+    }
+
 </style>
 
 
@@ -96,7 +147,17 @@
 <script src="{{asset('/Css_Customer/assets/js/components/hs.selectpicker.js')}}"></script>
 
 <!-- JS Plugins Init. -->
+
+<script src="{{asset('/adminCSS/assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
+<script src="{{asset('/adminCSS/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('/adminCSS/assets/vendor/chart.js/chart.umd.js')}}"></script>
+<script src="{{asset('/adminCSS/assets/vendor/echarts/echarts.min.js')}}"></script>
+<script src="{{asset('/adminCSS/assets/vendor/quill/quill.js')}}"></script>
+<script src="{{asset('/adminCSS/assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
+<script src="{{asset('/adminCSS/assets/vendor/tinymce/tinymce.min.js')}}"></script>
+<script src="{{asset('/adminCSS/assets/vendor/php-email-form/validate.js')}}"></script>
 <script>
+
     $(window).on('load', function () {
         // initialization of HSMegaMenu component
         $('.js-mega-menu').HSMegaMenu({
@@ -205,7 +266,46 @@
         // initialization of select picker
         $.HSCore.components.HSSelectPicker.init('.js-select');
     });
+
+    // checkbox
+    $(document).ready(function() {
+        // Activate tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Cập nhật trạng thái của các checkbox sản phẩm
+        var selectedProducts = $('input[name="selected_products"]').val().split(',');
+        $('.product-checkbox').each(function() {
+            var productId = $(this).data('product-id');
+            $(this).prop('checked', selectedProducts.includes(productId.toString()));
+        });
+
+        // Cập nhật trạng thái của checkbox "Chọn tất cả"
+        updateSelectAllCheckbox();
+
+        // Đăng ký các sự kiện
+        $('#selectAll').change(toggleSelectAll);
+        $('.product-checkbox').change(updateSelectAllCheckbox);
+        $('.product-checkbox').change(updateSelectedProducts);
+    });
+
+    function toggleSelectAll() {
+        var isChecked = $('#selectAll').is(':checked');
+        $('.product-checkbox').prop('checked', isChecked);
+        updateSelectedProducts();
+    }
+
+    function updateSelectAllCheckbox() {
+        var allChecked = $('.product-checkbox:not(:disabled)').length === $('.product-checkbox:checked:not(:disabled)').length;
+        $('#selectAll').prop('checked', allChecked);
+    }
+
+    function updateSelectedProducts() {
+        var selectedProducts = [];
+        $('.product-checkbox:checked').each(function() {
+            selectedProducts.push($(this).data('product-id'));
+        });
+        $('input[name="selected_products"]').val(selectedProducts.join(','));
+    }
+    // endcheckbox
 </script>
 <!-- Mirrored from transvelo.github.io/electro-html/2.0/html/home/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Apr 2024 03:25:10 GMT -->
-</body>
-</html>

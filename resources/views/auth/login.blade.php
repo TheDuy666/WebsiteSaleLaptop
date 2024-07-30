@@ -31,8 +31,8 @@
                                 <div id="login" data-target-group="idForm">
                                     <!-- Title -->
                                     <header class="text-center mb-7">
-                                        <h2 class="h4 mb-0">Welcome Back!</h2>
-                                        <p>Login to manage your account.</p>
+                                        <h2 class="h4 mb-0">Xin chào!</h2>
+                                        <p>Đăng nhập tài khoản của bạn </p>
                                     </header>
                                     <!-- End Title -->
 
@@ -58,7 +58,7 @@
                                     <!-- Form Group -->
                                     <div class="form-group">
                                         <div class="js-form-message js-focus-state">
-                                            <label class="sr-only" for="signinPassword">Password</label>
+                                            <label class="sr-only" for="signinPassword">Mật khẩu </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="signinPasswordLabel">
@@ -74,12 +74,12 @@
                                     </div>
                                     <!-- End Form Group -->
 
-                                    <div class="d-flex justify-content-end mb-4">
-                                        <a class="js-animation-link small link-muted" href="javascript:;"
-                                           data-target="#forgotPassword"
-                                           data-link-group="idForm"
-                                           data-animation-in="slideInUp">Forgot Password?</a>
-                                    </div>
+{{--                                    <div class="d-flex justify-content-end mb-4">--}}
+{{--                                        <a class="js-animation-link small link-muted" href="javascript:;"--}}
+{{--                                           data-target="#forgotPassword"--}}
+{{--                                           data-link-group="idForm"--}}
+{{--                                           data-animation-in="slideInUp">Forgot Password?</a>--}}
+{{--                                    </div>--}}
 
                                     <div class="mb-2">
                                         <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Login</button>
@@ -90,25 +90,25 @@
                                         <a class="js-animation-link small text-dark" href="javascript:;"
                                            data-target="#signup"
                                            data-link-group="idForm"
-                                           data-animation-in="slideInUp">Signup
+                                           data-animation-in="slideInUp">Đăng ký
                                         </a>
                                     </div>
 
-                                    <div class="text-center">
-                                        <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>
-                                    </div>
+{{--                                    <div class="text-center">--}}
+{{--                                        <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>--}}
+{{--                                    </div>--}}
 
-                                    <!-- Login Buttons -->
-                                    <div class="d-flex">
-                                        <a class="btn btn-block btn-sm btn-soft-facebook transition-3d-hover mr-1" href="#">
-                                            <span class="fab fa-facebook-square mr-1"></span>
-                                            Facebook
-                                        </a>
-                                        <a class="btn btn-block btn-sm btn-soft-google transition-3d-hover ml-1 mt-0" href="#">
-                                            <span class="fab fa-google mr-1"></span>
-                                            Google
-                                        </a>
-                                    </div>
+{{--                                    <!-- Login Buttons -->--}}
+{{--                                    <div class="d-flex">--}}
+{{--                                        <a class="btn btn-block btn-sm btn-soft-facebook transition-3d-hover mr-1" href="#">--}}
+{{--                                            <span class="fab fa-facebook-square mr-1"></span>--}}
+{{--                                            Facebook--}}
+{{--                                        </a>--}}
+{{--                                        <a class="btn btn-block btn-sm btn-soft-google transition-3d-hover ml-1 mt-0" href="#">--}}
+{{--                                            <span class="fab fa-google mr-1"></span>--}}
+{{--                                            Google--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
                                     <!-- End Login Buttons -->
                                 </div>
                                 </form>
@@ -118,8 +118,8 @@
                                 <div id="signup" style="display: none; opacity: 0;" data-target-group="idForm">
                                     <!-- Title -->
                                     <header class="text-center mb-7">
-                                        <h2 class="h4 mb-0">Welcome to Electro.</h2>
-                                        <p>Fill out the form to get started.</p>
+                                        <h2 class="h4 mb-0">Xin chào</h2>
+                                        <p>Đăng ký tài khoản của bạn </p>
                                     </header>
                                     <!-- End Title -->
 
@@ -250,22 +250,22 @@
                                         </a>
                                     </div>
 
-                                    <div class="text-center">
-                                        <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>
-                                    </div>
+{{--                                    <div class="text-center">--}}
+{{--                                        <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>--}}
+{{--                                    </div>--}}
 
-                                    <!-- Login Buttons -->
-                                    <div class="d-flex">
-                                        <a class="btn btn-block btn-sm btn-soft-facebook transition-3d-hover mr-1" href="#">
-                                            <span class="fab fa-facebook-square mr-1"></span>
-                                            Facebook
-                                        </a>
-                                        <a class="btn btn-block btn-sm btn-soft-google transition-3d-hover ml-1 mt-0" href="#">
-                                            <span class="fab fa-google mr-1"></span>
-                                            Google
-                                        </a>
-                                    </div>
-                                    <!-- End Login Buttons -->
+{{--                                    <!-- Login Buttons -->--}}
+{{--                                    <div class="d-flex">--}}
+{{--                                        <a class="btn btn-block btn-sm btn-soft-facebook transition-3d-hover mr-1" href="#">--}}
+{{--                                            <span class="fab fa-facebook-square mr-1"></span>--}}
+{{--                                            Facebook--}}
+{{--                                        </a>--}}
+{{--                                        <a class="btn btn-block btn-sm btn-soft-google transition-3d-hover ml-1 mt-0" href="#">--}}
+{{--                                            <span class="fab fa-google mr-1"></span>--}}
+{{--                                            Google--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                    <!-- End Login Buttons -->--}}
                                 </div>
                                 <!-- End Signup -->
                             </form>

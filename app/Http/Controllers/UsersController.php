@@ -11,4 +11,8 @@ class UsersController extends Controller
         $allUsers = DB::table("users")->get();
         return view('admin.users', ['allUsers' => $allUsers]);
     }
+
+    public function viewContact() {
+        return view('customer.contact');
+    }
 }

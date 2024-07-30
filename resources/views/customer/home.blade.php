@@ -10,24 +10,39 @@
                         <div class="product-item__inner px-xl-4 p-3">
                             <div class="product-item__body pb-xl-2">
                                 <div class="mb-2"><a href=""  class="font-size-12 text-gray-5">{{$product-> category_name}}</a></div>
-                                <h5 class="mb-1 product-item__title"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="text-blue font-weight-bold">{{ $product->name }}</a></h5>
+                                <h5 class="mb-1 product-item__title"><a href="{{ route('customer.view-detail', ['id' => $product->id]) }}" class="text-blue font-weight-bold">{{ $product->name }}</a></h5>
                                 <div class="mb-2">
                                     <a href="{{ route('customer.view-detail', ['id' => $product->id]) }}" class="d-block text-center"><img class="img-fluid" style="max-width: 100%; height: 200px";  src="{{ asset('image/' . $product->image) }}" alt="{{ $product->name }}"></a>
                                 </div>
                                 <div class="flex-center-between mb-1">
                                     <div class="prodcut-price">
-                                        <div class="text-gray-100"><p class="card-text">Price: {{ $product->price }}VNĐ</p></div>
+                                        <div class="text-gray-100"><p class="card-text">Price: {{ number_format($product->price),0, ',', '.'}}VNĐ</p></div>
                                     </div>
-                                    <div class="d-none d-xl-block prodcut-add-cart">
-                                        <a title="Thêm vào giỏ hàng" href="{{route('cart.add', $product -> id)}}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                    </div>
+                                    <form action="{{ route('cart.add', $product->id) }}" method="GET" id="frmQuantity">
+                                    @csrf
+                                        <input type="hidden" value="ADD_TO_CART" name="type" id="type"/>
+                                        <div class="d-none d-xl-block product-add-cart">
+                                            <button  type="submit" class="btn-add-cart btn-primary "><i class="ec ec-add-to-cart"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="border-top pt-2 flex-center-between flex-wrap">
+                                    <a href="{{ route('customer.view-detail', ['id' => $product->id]) }}" class="text-gray-6 font-size-13">
+                                        <form action="{{route('customer.buy-now', ['product_id'=>$product->id])}}" method="post" class="container">
+                                            @csrf
+                                            @if($product->quantity > 0)
+                                                <button type="submit" class="btn btn-primary">Đặt hàng</button>
+                                            @else
+                                                <button type="submit" class="btn btn-danger" disabled>Hết hàng</button>
+                                            @endif
+                                            <a href="{{ route('customer.view-detail', ['id' => $product->id]) }}" class="btn btn-outline-dark" style="margin-right:10px">View Details</a>
+                                        </form>
+
+                                    </a>
                                 </div>
                             </div>
                             <div class="product-item__footer">
-                                <div class="border-top pt-2 flex-center-between flex-wrap">
-                                    <a href="https://transvelo.github.io/electro-html/2.0/html/shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                    <a href="{{ route('customer.view-detail', ['id' => $product->id]) }}" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Add to Wishlist</a>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -36,4 +51,5 @@
         @endforeach
     </div>
 </div>
+
 @endsection

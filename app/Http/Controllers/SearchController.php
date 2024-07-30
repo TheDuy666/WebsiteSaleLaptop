@@ -2,21 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
-    public function searchByName(Request $request) {
-        $kw = $request->input('keyword');
+    public function searchResults(Request $request)
+    {
+        $searchTerm = $request->input('search_term');
+        $sortBy = $request->input('sort_by', 'price');
+        $orderBy = $request->input('order_by', 'asc');
 
-        if ($kw) {
-            $products = DB::table('products')->where('name', 'like', '%'.$kw.'%')->get();
-        } else {
-            $products = DB::table('products')->get();
+        $query = Product::query();
+
+        if ($searchTerm) {
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('name', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('description', 'like', '%' . $searchTerm . '%');
+            });
         }
 
-        return view('admin/products', ['allProducts' => $products]);
+        $query->orderBy($sortBy, $orderBy);
+
+        $products = $query->paginate(10);
+
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        return view('customer.search-result', compact(
+            'products',
+            'categories',
+            'brands',
+            'searchTerm',
+            'sortBy',
+            'orderBy'
+        ));
     }
 
 

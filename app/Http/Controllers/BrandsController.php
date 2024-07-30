@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BrandsController extends Controller
 {
     public function viewAdminBrands() {
-        $allBrands = DB::table('brands')
-            ->select(['id', 'name','created_at', 'updated_at' ])
-            ->paginate(5);
+        $allBrands = DB::table('brands')->select(['id', 'name','created_at', 'updated_at' ])->get();
         return view('admin.brands', ['allBrands' => $allBrands]);
     }
 
@@ -37,6 +38,15 @@ class BrandsController extends Controller
         return redirect() -> back();
     }
 
+    function viewEditBrand($id) {
+        $brand = Brand::findOrFail($id);
+
+
+        // Lấy danh sách các cặp category_id và category_name từ $allProducts
+
+        return view('admin.edit-brand', compact('brand'));
+
+    }
 
     public function editBrandById ($id, Request $request) {
         // Bước 1: kiểm tra xem bài viết có tồn tại hay không
@@ -61,6 +71,20 @@ class BrandsController extends Controller
         } else {
             flash() -> addSuccess('Cap nhat thanh cong');
         }
-        return redirect()->back();
+        return redirect()->route('admin.brands');
     }
+    public function showProductsByBrand($brandId)
+    {
+        $brandInfo = Brand::findOrFail($brandId);
+        $allProducts = $brandInfo->products;
+        $allBrands = Brand::pluck('name', 'id')->toArray();
+
+
+        return view('customer.view-brand', [
+            'brandInfo' => $brandInfo,
+            'allProducts' => $allProducts,
+            'allBrands' => $allBrands,
+        ]);
+    }
+
 }

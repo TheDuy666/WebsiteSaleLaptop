@@ -28,25 +28,32 @@ class AuthController extends Controller
     }
 
     // POST: /login
-    function login(Request $request)
+    public function login(Request $request)
     {
-        // Xu ly dang nhap
+        // Xử lý đăng nhập
         $email = $request->get('email');
         $password = $request->get('password');
+
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            // Xem vai tro cua nguoi nay
             $user = Auth::user();
+
+            // Kiểm tra trạng thái xác nhận email
+            if ($user->role !== 'admin' && $user->email_verified_at === null) {
+                Auth::logout();
+                sweetalert()->addWarning('Vui lòng xác nhận email trước khi đăng nhập.');
+                return redirect()->back();
+            }
+
+            // Xem vai trò của người dùng
             switch ($user->role) {
                 case 'admin':
                     return redirect()->route('admin.home');
-                    break;
                 case 'customer':
                     return redirect()->route('customer.home');
-                    break;
             }
         } else {
-            // Chuyen huong ve login
-            sweetalert()->addWarning('Sai mật khẩu');
+            // Chuyển hướng về login
+            sweetalert()->addWarning('Sai email hoặc mật khẩu');
             return redirect()->back();
         }
     }
@@ -62,6 +69,7 @@ class AuthController extends Controller
             return redirect()->route('customer.home');
         }
     }
+
 
 
 //    function register(Request $request)

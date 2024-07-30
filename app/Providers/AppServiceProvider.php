@@ -19,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->composer('header-customer.blade', function ($view) {
+            $user = auth()->user();
+            $cartCount = $user->cart->cartDetails()->count();
+            $view->with('cartCount', $cartCount);
+        });
     }
 }

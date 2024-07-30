@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('email_verification_token', 255)->nullable()->after('email');
+        });
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');

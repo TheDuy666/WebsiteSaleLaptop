@@ -19,6 +19,7 @@ class Order extends Model
         'total',
         'landing_code',
         'user_id',
+        'status',
     ];
 
     public function user() {

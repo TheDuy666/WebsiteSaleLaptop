@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->dateTime('order_date');
             $table->string('code');
+            $table->string('status')->nullable();
             $table->decimal('total', 8, 2);
             $table->string('landing_code');
             $table->unsignedBigInteger('user_id');

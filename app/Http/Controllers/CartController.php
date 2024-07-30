@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\CartDetail;
@@ -18,6 +19,7 @@ class CartController extends Controller
             $cart = $user->cart;
             $cartDetails = $cart->cartDetails()->with('product')->get();
 
+
             $totalAmount = 0;
             foreach ($cartDetails as $cartDetail) {
                 $totalAmount += $cartDetail->quantity * $cartDetail->product->price;
@@ -28,28 +30,41 @@ class CartController extends Controller
     }
     public function add(Product $product, Request $request)
     {
-        $quantity = $request->quantity ?: 1;
-        // Lấy cart_id từ bảng carts
-        $cartId = Cart::where('user_id', auth()->user()->id)->value('id');
+        if ($request->type === "ADD_TO_CART") {
+            $quantity = $request->quantity ?: 1;
+            // Lấy cart_id từ bảng carts
+            $cartId = Cart::where('user_id', auth()->user()->id)->value('id');
 
-        // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-        $cartDetail = CartDetail::where([
-            'cart_id' => $cartId,
-            'product_id' => $product->id
-        ])->first();
-        if ($cartDetail) {
-            // Sản phẩm đã có trong giỏ hàng, tăng quantity lên
-            $cartDetail->increment('quantity', $quantity);
-        } else {
-            // Sản phẩm chưa có trong giỏ hàng, thêm mới
-            CartDetail::create([
+            // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+            $cartDetail = CartDetail::where([
                 'cart_id' => $cartId,
-                'product_id' => $product->id,
-                'quantity' => $quantity
-            ]);
+                'product_id' => $product->id
+            ])->first();
+            if ($cartDetail) {
+                // Sản phẩm đã có trong giỏ hàng, tăng quantity lên
+                $cartDetail->increment('quantity', $quantity);
+            } else {
+                // Sản phẩm chưa có trong giỏ hàng, thêm mới
+                CartDetail::create([
+                    'cart_id' => $cartId,
+                    'product_id' => $product->id,
+                    'quantity' => $quantity
+                ]);
+            }
+            flash() -> addSuccess('Thêm thành công');
+            return redirect()->back();
         }
-        flash() -> addSuccess('Thêm thành công');
-        return redirect()->back();
+        if ($request->type === "DAT_HANG") {
+            $product = DB::table('products')
+                ->select('products.*')
+                ->where('products.id', $product->id)
+                ->first();
+
+            $quantity = $request->input('quantity', 1);
+            // Xử lý logic mua hàng tại đây
+
+            return view('customer.buy-now', ['product' => $product, 'quantity' => $quantity]);
+        }
     }
     public function update($product_id, Request $request)
     {
@@ -62,7 +77,7 @@ class CartController extends Controller
             $cartDetail->update(['quantity' => $newQuantity]);
         }
 
-        return redirect()->route('customer.cart')->with('success', 'Quantity updated successfully.');
+        return redirect()->route('customer.cart');
     }
 
     public function delete($product_id)

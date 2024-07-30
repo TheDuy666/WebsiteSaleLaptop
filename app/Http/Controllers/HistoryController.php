@@ -14,7 +14,7 @@ class HistoryController extends Controller
     {
         $user = Auth::user();
         $orders = $user->orders;
-        return view('customer.view-order-history', compact('orders'));
+        return view('customer.view-orders', compact('orders'));
     }
 
     public function showDetailHistory($orderId)
